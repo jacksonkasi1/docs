@@ -54,6 +54,10 @@
       "pages": ["introduction", "quickstart", "development"]
     },
     {
+      "group": "Developer Best Practices 😊",
+      "pages": ["frontend/ReactImportBestPractices"]
+    },
+    {
       "group": "Essentials",
       "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
     },
