@@ -35,7 +35,7 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://peacockindia.mintlify.app"
     },
     {
       "name": "Community",
@@ -45,13 +45,17 @@
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.peacockindia.in/blog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": ["introduction", "quickstart", "development"]
+    },
+    {
+      "group": "Developer Best Practices ⚒️",
+      "pages": ["docs/organizing-imports"]
     },
     {
       "group": "Essentials",
