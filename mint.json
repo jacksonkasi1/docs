@@ -15,6 +15,7 @@
       "to": "#07C983"
     }
   },
+  "feedback.thumbsRating": true,
   "topbarLinks": [
     {
       "name": "Support",
@@ -75,8 +76,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/jacksonkasi11",
+    "github": "https://github.com/jacksonkasi1",
+    "linkedin": "https://www.linkedin.com/in/jacksonkasi"
   }
 }
