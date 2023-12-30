@@ -19,7 +19,7 @@ In React development, maintaining consistent typography across different parts o
 
 Repetitive inline styling for text elements is a common issue. It not only clutters your code but also makes it difficult to maintain and update styles consistently across your application.
 
-### Bad Practice Example
+### Bad Practice Example 📛
 
 Here's an example of what to avoid:
 
@@ -34,7 +34,7 @@ Here's an example of what to avoid:
 
 A better approach is to use a centralized Typography component. This approach ensures consistency, adheres to the DRY (Don't Repeat Yourself) principle, and simplifies updates to your site's typography.
 
-### Good Practice Example
+### Good Practice Example ✅
 
 Here's how you can use the Typography component:
 
@@ -97,10 +97,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
 /**
- * @typedef {'P_Bold_H1' | 'P_Bold_H2' | 'P_Bold_H3' | 'P_Bold_H4' | 'P_Bold_H5' | 'P_Bold_H6' |
- *            'P_SemiBold_H1' | 'P_SemiBold_H2' | 'P_SemiBold_H3' | 'P_SemiBold_H4' | 'P_SemiBold_H5' | 'P_SemiBold_H6' |
- *            'P_Medium_H1' | 'P_Medium_H2' | 'P_Medium_H3' | 'P_Medium_H4' | 'P_Medium_H5' | 'P_Medium_H6' |
- *            'P_Regular_H1' | 'P_Regular_H2' | 'P_Regular_H3' | 'P_Regular_H4' | 'P_Regular_H5' | 'P_Regular_H6'} TypographyVariant
+ * @typedef {'T_Bold_H1' | 'T_Bold_H2' | 'T_Bold_H3' | 'T_Bold_H4' | 'T_Bold_H5' | 'T_Bold_H6' |
+ *            'T_SemiBold_H1' | 'T_SemiBold_H2' | 'T_SemiBold_H3' | 'T_SemiBold_H4' | 'T_SemiBold_H5' | 'T_SemiBold_H6' |
+ *            'T_Medium_H1' | 'T_Medium_H2' | 'T_Medium_H3' | 'T_Medium_H4' | 'T_Medium_H5' | 'T_Medium_H6' |
+ *            'T_Regular_H1' | 'T_Regular_H2' | 'T_Regular_H3' | 'T_Regular_H4' | 'T_Regular_H5' | 'T_Regular_H6'} TypographyVariant
  * @typedef {'move' | 'underline'} TypographyAnimation
  * @typedef {'forward' | 'back'} LinkDirection
  */
@@ -124,7 +124,7 @@ import { motion as m } from "framer-motion";
  *
  * @example
  * // Example usage of Typography component
- * <Typography variant="P_Bold_H1" animate="move">Hello, World!</Typography>
+ * <Typography variant="T_Bold_H1" animate="move">Hello, World!</Typography>
  */
 
 function Typography({
@@ -148,63 +148,63 @@ function Typography({
   const getClassName = () => {
     switch (variant) {
       // "Bold" - 700
-      case "P_Bold_H1":
+      case "T_Bold_H1":
         return "font-poppins font-bold text-[40px] md:text-[62px] tracking-normal";
-      case "P_Bold_H2":
+      case "T_Bold_H2":
         return "font-poppins font-bold text-[32px] md:text-[49px] tracking-normal";
-      case "P_Bold_H3":
+      case "T_Bold_H3":
         return "font-poppins font-bold text-[24px] md:text-[39px] tracking-normal";
-      case "P_Bold_H4":
+      case "T_Bold_H4":
         return "font-poppins font-bold text-[20px] md:text-[25px] tracking-normal";
-      case "P_Bold_H5":
+      case "T_Bold_H5":
         return "font-poppins font-bold text-[16px] md:text-[20px] tracking-normal";
-      case "P_Bold_H6":
+      case "T_Bold_H6":
         return "font-poppins font-bold text-[14px] md:text-[16px] tracking-normal";
 
       // "SemiBold" - 600
-      case "P_SemiBold_H1":
+      case "T_SemiBold_H1":
         return "font-poppins font-semibold text-[40px] md:text-[62px] tracking-normal";
-      case "P_SemiBold_H2":
+      case "T_SemiBold_H2":
         return "font-poppins font-semibold text-[32px] md:text-[49px] tracking-normal";
-      case "P_SemiBold_H3":
+      case "T_SemiBold_H3":
         return "font-poppins font-semibold text-[24px] md:text-[39px] tracking-normal";
-      case "P_SemiBold_H_T":
+      case "T_SemiBold_H_T":
         return "font-poppins font-semibold text-[24px] md:text-[31px] tracking-normal";
-      case "P_SemiBold_H4":
+      case "T_SemiBold_H4":
         return "font-poppins font-semibold text-[20px] md:text-[25px] tracking-normal";
-      case "P_SemiBold_H5":
+      case "T_SemiBold_H5":
         return "font-poppins font-semibold text-[16px] md:text-[20px] tracking-normal";
-      case "P_SemiBold_H6":
+      case "T_SemiBold_H6":
         return "font-poppins font-semibold text-[14px] md:text-[16px] tracking-normal";
 
       // "Medium" - 500
-      case "P_Medium_H1":
+      case "T_Medium_H1":
         return "font-poppins font-medium text-[40px] md:text-[62px] tracking-normal";
-      case "P_Medium_H2":
+      case "T_Medium_H2":
         return "font-poppins font-medium text-[32px] md:text-[49px] tracking-normal";
-      case "P_Medium_H3":
+      case "T_Medium_H3":
         return "font-poppins font-medium text-[24px] md:text-[39px] tracking-normal";
-      case "P_Medium_H4":
+      case "T_Medium_H4":
         return "font-poppins font-medium text-[20px] md:text-[25px] tracking-normal";
-      case "P_Medium_H5":
+      case "T_Medium_H5":
         return "font-poppins font-medium text-[16px] md:text-[20px] tracking-normal";
-      case "P_Medium_H6":
+      case "T_Medium_H6":
         return "font-poppins font-medium text-[14px] md:text-[16px] tracking-normal";
-      case "P_Medium_H7":
+      case "T_Medium_H7":
         return "font-poppins font-medium text-[10px] md:text-[14px] tracking-normal";
 
       // "Regular" - 400
-      case "P_Regular_H1":
+      case "T_Regular_H1":
         return "font-poppins font-normal text-[40px] md:text-[62px] tracking-normal";
-      case "P_Regular_H2":
+      case "T_Regular_H2":
         return "font-poppins font-normal text-[32px] md:text-[49px] tracking-normal";
-      case "P_Regular_H3":
+      case "T_Regular_H3":
         return "font-poppins font-normal text-[24px] md:text-[39px] tracking-normal";
-      case "P_Regular_H4":
+      case "T_Regular_H4":
         return "font-poppins font-normal text-[20px] md:text-[25px] tracking-normal";
-      case "P_Regular_H5":
+      case "T_Regular_H5":
         return "font-poppins font-normal text-[16px] md:text-[20px] tracking-normal";
-      case "P_Regular_H6":
+      case "T_Regular_H6":
         return "font-poppins font-normal text-[14px] md:text-[16px] tracking-normal";
 
       default:
