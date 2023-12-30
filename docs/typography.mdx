@@ -1,0 +1,286 @@
+---
+title: "Using a Centralized Typography"
+description: "Learn how to maintain consistent typography across your React application using a centralized Typography component."
+---
+
+<Frame>
+  <img
+    style={{ borderRadius: "0.5rem" }}
+    alt="Using a Centralized Typography Component in React"
+    src="https://images.unsplash.com/photo-1703769605307-395ace742240?q=80&w=3280&auto=format&fit=crop&ixlib=rb-4.0.3"
+  />
+</Frame>
+
+# Using a Centralized Typography Component in React
+
+In React development, maintaining consistent typography across different parts of the application can be challenging. Often, developers find themselves repeating styles for text elements, leading to a cluttered and difficult-to-manage codebase 😔. This document outlines the problem and introduces a solution: using a centralized Typography component.
+
+## The Problem with Repetitive Inline Styling
+
+Repetitive inline styling for text elements is a common issue. It not only clutters your code but also makes it difficult to maintain and update styles consistently across your application.
+
+### Bad Practice Example
+
+Here's an example of what to avoid:
+
+```jsx
+<h1 className="text-3xl font-bold">Login Page</h1>
+<p className=" text-[#61748E] font-medium  pt-2">
+  hello world
+</p>
+```
+
+## The Solution: Centralized Typography Component
+
+A better approach is to use a centralized Typography component. This approach ensures consistency, adheres to the DRY (Don't Repeat Yourself) principle, and simplifies updates to your site's typography.
+
+### Good Practice Example
+
+Here's how you can use the Typography component:
+
+```jsx
+<Typography variant='T_Bold_H5'>Login Page</Typography>
+<Typography variant="T_SemiBold_H6" className='ml-2'>Continue with Google</Typography>
+```
+
+## Benefits of Using a Centralized Typography Component
+
+- **Consistency**: Ensures that typography is consistent throughout the application.
+- **Maintainability**: Makes it easier to update and maintain styles.
+- **Adherence to DRY Principle**: Avoids repetition of similar code, saving development time.
+- **Flexibility**: Allows for easy changes to the site's overall typography from a single location.
+
+## Typography Component Overview
+
+The Typography component is designed to handle various text styles and animations. Here's a brief overview of its structure and usage:
+
+```jsx
+// Import statements
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion";
+
+// Component definition...
+```
+
+### Component Props
+
+- **variant**: Specifies the text style variant.
+- **children**: The content to be rendered.
+- **className**: Additional CSS classes.
+- **maxLines**: Maximum number of lines to display.
+- **navigate**: Direction of navigation for links.
+- **link**: URL for navigation.
+- **target**: Target attribute for the link.
+- **animate**: Type of animation.
+- **disableSelect**: If true, disables text selection.
+
+### Usage Example
+
+```jsx
+<Typography variant="T_Bold_H1" animate="move">
+  Welcome to Our Site
+</Typography>
+```
+
+## Example `Typography.jsx`
+
+Click on the following dropdown to view a sample `Typography.jsx` file with imports organized according to the order described above.
+
+<Accordion title="View Typography code 👀">
+
+```jsx
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// ** third party library
+import { motion as m } from "framer-motion";
+
+/**
+ * @typedef {'P_Bold_H1' | 'P_Bold_H2' | 'P_Bold_H3' | 'P_Bold_H4' | 'P_Bold_H5' | 'P_Bold_H6' |
+ *            'P_SemiBold_H1' | 'P_SemiBold_H2' | 'P_SemiBold_H3' | 'P_SemiBold_H4' | 'P_SemiBold_H5' | 'P_SemiBold_H6' |
+ *            'P_Medium_H1' | 'P_Medium_H2' | 'P_Medium_H3' | 'P_Medium_H4' | 'P_Medium_H5' | 'P_Medium_H6' |
+ *            'P_Regular_H1' | 'P_Regular_H2' | 'P_Regular_H3' | 'P_Regular_H4' | 'P_Regular_H5' | 'P_Regular_H6'} TypographyVariant
+ * @typedef {'move' | 'underline'} TypographyAnimation
+ * @typedef {'forward' | 'back'} LinkDirection
+ */
+
+/**
+ * Represents a Typography component with various text styles and animations.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {TypographyVariant} props.variant - The text variant.
+ * @param {React.ReactNode} props.children - The content to display.
+ * @param {string} props.className - Additional CSS classes for styling.
+ * @param {number} props.maxLines - Maximum number of lines to display (0 for no limit).
+ * @param {LinkDirection} [props.navigate] - The direction of the link.
+ * @param {string} props.link - Optional link URL.
+ * @param {string} props.target - Target attribute for the link.
+ * @param {TypographyAnimation} props.animate - Animation type ('move' or 'underline').
+ * @param {boolean} props.disableSelect - Disable selection
+ * @param {React.ReactNode} props.children - The content to display.
+ * @returns {React.ReactNode} The rendered Typography component.
+ *
+ * @example
+ * // Example usage of Typography component
+ * <Typography variant="P_Bold_H1" animate="move">Hello, World!</Typography>
+ */
+
+function Typography({
+  mVariants,
+  mDelay = 0,
+  variant,
+  children,
+  className,
+  maxLines,
+  navigate,
+  link = "",
+  target = "",
+  animate = "",
+  disableSelect = false, // Added the new prop with a default value of false
+  ...props
+}) {
+  if (!variant) {
+    throw new Error("variant is required");
+  }
+
+  const getClassName = () => {
+    switch (variant) {
+      // "Bold" - 700
+      case "P_Bold_H1":
+        return "font-poppins font-bold text-[40px] md:text-[62px] tracking-normal";
+      case "P_Bold_H2":
+        return "font-poppins font-bold text-[32px] md:text-[49px] tracking-normal";
+      case "P_Bold_H3":
+        return "font-poppins font-bold text-[24px] md:text-[39px] tracking-normal";
+      case "P_Bold_H4":
+        return "font-poppins font-bold text-[20px] md:text-[25px] tracking-normal";
+      case "P_Bold_H5":
+        return "font-poppins font-bold text-[16px] md:text-[20px] tracking-normal";
+      case "P_Bold_H6":
+        return "font-poppins font-bold text-[14px] md:text-[16px] tracking-normal";
+
+      // "SemiBold" - 600
+      case "P_SemiBold_H1":
+        return "font-poppins font-semibold text-[40px] md:text-[62px] tracking-normal";
+      case "P_SemiBold_H2":
+        return "font-poppins font-semibold text-[32px] md:text-[49px] tracking-normal";
+      case "P_SemiBold_H3":
+        return "font-poppins font-semibold text-[24px] md:text-[39px] tracking-normal";
+      case "P_SemiBold_H_T":
+        return "font-poppins font-semibold text-[24px] md:text-[31px] tracking-normal";
+      case "P_SemiBold_H4":
+        return "font-poppins font-semibold text-[20px] md:text-[25px] tracking-normal";
+      case "P_SemiBold_H5":
+        return "font-poppins font-semibold text-[16px] md:text-[20px] tracking-normal";
+      case "P_SemiBold_H6":
+        return "font-poppins font-semibold text-[14px] md:text-[16px] tracking-normal";
+
+      // "Medium" - 500
+      case "P_Medium_H1":
+        return "font-poppins font-medium text-[40px] md:text-[62px] tracking-normal";
+      case "P_Medium_H2":
+        return "font-poppins font-medium text-[32px] md:text-[49px] tracking-normal";
+      case "P_Medium_H3":
+        return "font-poppins font-medium text-[24px] md:text-[39px] tracking-normal";
+      case "P_Medium_H4":
+        return "font-poppins font-medium text-[20px] md:text-[25px] tracking-normal";
+      case "P_Medium_H5":
+        return "font-poppins font-medium text-[16px] md:text-[20px] tracking-normal";
+      case "P_Medium_H6":
+        return "font-poppins font-medium text-[14px] md:text-[16px] tracking-normal";
+      case "P_Medium_H7":
+        return "font-poppins font-medium text-[10px] md:text-[14px] tracking-normal";
+
+      // "Regular" - 400
+      case "P_Regular_H1":
+        return "font-poppins font-normal text-[40px] md:text-[62px] tracking-normal";
+      case "P_Regular_H2":
+        return "font-poppins font-normal text-[32px] md:text-[49px] tracking-normal";
+      case "P_Regular_H3":
+        return "font-poppins font-normal text-[24px] md:text-[39px] tracking-normal";
+      case "P_Regular_H4":
+        return "font-poppins font-normal text-[20px] md:text-[25px] tracking-normal";
+      case "P_Regular_H5":
+        return "font-poppins font-normal text-[16px] md:text-[20px] tracking-normal";
+      case "P_Regular_H6":
+        return "font-poppins font-normal text-[14px] md:text-[16px] tracking-normal";
+
+      default:
+        return "";
+    }
+  };
+
+  const fontTypes = getClassName();
+
+  const lineClampClass =
+    maxLines > 0 ? `line-clamp-${maxLines?.toString()}` : "whitespace-normal";
+
+  const getAnimationClass = () => {
+    switch (animate) {
+      case "move":
+        return "hover:ml-1.5 transition-all duration-300";
+      case "underline":
+        return "hover:underline transition-all duration-300";
+      default:
+        return "";
+    }
+  };
+
+  const animationClass = getAnimationClass();
+
+  const navigator = useNavigate();
+
+  const handleNavigate = () => {
+    if (navigate === "back") {
+      navigator(-1);
+    } else {
+      navigator(1);
+    }
+  };
+
+  const content = (
+    <m.span
+      initial="hidden"
+      whileInView="visible"
+      variants={mVariants}
+      transition={{ duration: 0.6, ease: "easeIn", delay: mDelay }}
+      viewport={{ once: true }}
+      className={`${fontTypes} ${className} ${lineClampClass} ${animationClass} overflow-wrap overflow-hidden leading-normal`}
+      style={{ userSelect: disableSelect ? "none" : "auto" }} // Add this line to conditionally apply userSelect style
+      {...props}
+      onClick={() => {
+        if (props?.onClick) {
+          props?.onClick(); // Execute the props.onClick function if it exists
+        }
+        if (navigate) {
+          handleNavigate(); // Execute handleNavigate if it exists
+        }
+      }}
+    >
+      {children}
+    </m.span>
+  );
+
+  return link ? (
+    <Link to={link} target={target} className="max-w-fit">
+      {content}
+    </Link>
+  ) : (
+    content
+  );
+}
+
+Typography.defaultProps = {
+  className: "",
+  maxLines: 0,
+  animate: "",
+};
+
+export default Typography;
+```
+
+</Accordion>
+
+By integrating this Typography component into your React project, you can significantly enhance the readability and maintainability of your code, ensuring a consistent and professional appearance across your application.

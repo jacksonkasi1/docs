@@ -56,7 +56,7 @@
     },
     {
       "group": "Developer Best Practices ⚒️",
-      "pages": ["docs/organizing-imports"]
+      "pages": ["docs/organizing-imports", "docs/typography"]
     },
     {
       "group": "Essentials",
