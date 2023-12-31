@@ -25,7 +25,7 @@ Here's an example of what to avoid:
 
 ```jsx
 <h1 className="text-3xl font-bold">Login Page</h1>
-<p className=" text-[#61748E] font-medium  pt-2">
+<p className="text-[#61748E] font-medium  pt-2">
   hello world
 </p>
 ```
@@ -39,8 +39,11 @@ A better approach is to use a centralized Typography component. This approach en
 Here's how you can use the Typography component:
 
 ```jsx
-<Typography variant='T_Bold_H5'>Login Page</Typography>
-<Typography variant="T_SemiBold_H6" className='ml-2'>Continue with Google</Typography>
+<Typography variant="T_Bold_H5" className="mx-auto">Login Page</Typography>
+
+<Button>
+  <Typography variant="T_SemiBold_H6">Continue with Google</Typography>
+</Button>
 ```
 
 ## Benefits of Using a Centralized Typography Component
