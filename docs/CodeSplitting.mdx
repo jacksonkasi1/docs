@@ -1,0 +1,710 @@
+---
+title: "Best Practices for Code Splitting in Web Development"
+sidebarTitle: "Code Splitting"
+description: "Learn the importance of modular code organization, with examples of good and bad practices in React.js projects."
+icon: "rectangle-code"
+---
+
+<Frame>
+<img
+  style={{ borderRadius: '0.5rem' }}
+  alt="Best Practices for Import Statements in React"
+  src="https://images.unsplash.com/photo-1703880258785-45bc4492a912?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3"
+/>
+</Frame>
+
+
+# Best Practices for Code Splitting in Web Development
+
+Effective code organization is key to maintaining a scalable, readable, and maintainable codebase. This document discusses good and bad practices in code splitting, particularly in the context of React.js development, and provides examples for a more modular code structure.
+
+## The Problem with Monolithic Code Structures ⚠️
+
+Monolithic or single-file code structures can lead to several issues:
+
+- **Difficult Maintenance**: Large files with mixed concerns are harder to understand and maintain.
+- **Poor Readability**: Finding specific code segments becomes challenging as the file size grows. An example from personal experience is encountering files extending to <Tooltip tip="🥲🥲🥲"> 15,000 </Tooltip> lines of code, which can be overwhelming and difficult to manage.
+- **Name Clashing**:  In extensive single files, reusing names for functions or components across different contexts can lead to conflicts and confusion, making debugging difficult.
+
+### Bad Practice Example 📛
+
+Avoid placing all components, utilities, and types in one large file. For instance, defining multiple modals, utilities, and type declarations in a single file leads to clutter and confusion.
+
+<CodeGroup>
+```jsx Example Large files
+// Bad Practice: Everything in one file
+import React from 'react';
+// Imports for components, utilities, types all mixed together...
+
+const MyComponent = () => { /* ... */ };
+const AnotherComponent = () => { /* ... */ };
+// Multiple components and utility functions defined here...
+
+// thousands of lines of code... 🚂
+
+export default MyComponent;
+```
+
+```jsx Name Clashing Example 1
+// Function to calculate the area of a circle
+function calculateArea(radius) {
+    return Math.PI * radius * radius;
+}
+
+// Later in the same file, another calculateArea function is defined for a square
+function calculateArea(side) {
+    return side * side;
+}
+
+// Usage
+const circleArea = calculateArea(5); // Intended to calculate area of a circle
+```
+
+```jsx Name Clashing Example 2
+
+import React, { useState } from 'react';
+
+const LargeComponent = () => {
+    // First useState for user input
+    const [input, setInput] = useState('');
+
+    const handleInputChange = (e) => {
+        setInput(e.target.value);
+    };
+
+    // ... many other states and handlers ...
+
+    // Accidental redeclaration of the same state and handler
+    const [input, setInput] = useState('');
+
+    const handleInputChange = () => {
+        // Logic intended for a different purpose
+    };
+
+    // ... more code ...
+
+    return (
+        <div>
+            <input type="text" value={input} onChange={handleInputChange} />
+            {/* Other components and logic */}
+        </div>
+    );
+};
+```
+</CodeGroup>
+
+## Good Practices in Code Splitting 🚀
+
+### Modular Component Structure
+
+Organize components into separate files and directories. This improves readability and maintenance.
+
+```jsx
+// Good Practice: Modular structure with sub-components
+import React from 'react';
+import SuccessModal from './SuccessModal';
+// ...other imports
+
+const Modal = ({ variant, ...props }) => {
+  // Component logic
+  return <div>{/* Render selected modal based on variant */}</div>;
+};
+
+export default Modal;
+```
+
+Example: Modal Component Structure
+
+```mdx
+.
+└── Modal/
+    ├── index.jsx
+    ├── SuccessModal.jsx
+    ├── WarningModal.jsx
+    ├── DangerModal.jsx
+    ├── LoginModal.jsx
+```
+
+### Modal Component Code example 🤓
+
+Example: Modal Component code
+
+<CodeGroup>
+```jsx index.jsx
+import React from 'react';
+
+// ** import sub components
+import SuccessModal from './SuccessModal';
+import WarningModal from './WarningModal';
+import DangerModal from './DangerModal';
+import LoginModal from './LoginModal';
+
+/**
+ * @typedef {'success' | 'warning' | 'danger' | 'login'} ModalVariant
+ * @typedef {'opaque' | 'blur' | 'transparent'} BackdropVariant
+ * @typedef {'auto' | 'top' | 'center' | 'bottom' | 'bottom-center' | 'top-center'} placement
+ */
+
+/**
+ * Modal component.
+ *
+ * @param {Object} props - The component props.
+ * @param {ModalVariant} props.variant - The variant of the header to render.
+ * @param {string} props.title
+ * @param {string} props.description
+ * @param {string} props.yesText
+ * @param {string}props.noText
+ * @param {Function} props.btnFunction - The function to call when button is clicked.
+ * @param {Function} props.yesFunction - The function to call when 'yes' is clicked.
+ * @param {Function} props.noFunction - The function to call when 'no' is clicked.
+ * @param {BackdropVariant} props.backdropVariant - The variant of the backdrop to render.
+ * @param {boolean} props.hideCloseButton - A boolean indicating whether a close button is present.
+ * @param {boolean} props.outsideClickClose - The boolean indicating whether the modal should close when clicking outside the modal
+ * @param {placement} props.placement - The placement of the modal
+ * @returns {JSX.Element|null} The rendered header component.
+ *
+ */
+const Modal = ({ variant, ...props }) => {
+  const variantComponents = {
+    success: SuccessModal,
+    warning: WarningModal,
+    danger: DangerModal,
+    login: LoginModal
+  };
+
+  const SelectedModal = variantComponents[variant] || null;
+
+  return <div>{SelectedModal && <SelectedModal {...props} />}</div>;
+};
+
+export default Modal;
+```
+
+```jsx SuccessModal.jsx
+import React from 'react';
+
+// ** import next ui
+import { Modal, ModalContent } from '@nextui-org/react';
+
+// ** import shared components
+import Typography from '@shared/Typography';
+import Button from '@shared/Button';
+
+// ** import assets
+import SuccessSvg from '@icons/SuccessSvg';
+
+// ** import redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setAlertModel } from '@redux/slices/utils';
+
+/**
+ * @typedef {'opaque' | 'blur' | 'transparent'} BackdropVariant
+ * @typedef {'auto' | 'top' | 'center' | 'bottom' | 'bottom-center' | 'top-center'} placement
+ */
+
+/**
+ * SuccessModal component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title for the modal.
+ * @param {string} props.description - The description for the modal.
+ * @param {string} props.btnText - The text for the button.
+ * @param {Function} props.btnFunction - The function to call when the button is clicked.
+ * @param {BackdropVariant} props.backdropVariant - The variant of the backdrop to render.
+ * @param {boolean} props.hideCloseButton - A boolean indicating whether a close button is present.
+ * @param {placement} props.placement - The placement of the modal
+ * @param {boolean} props.outsideClickClose - A boolean indicating whether the outside click closes the modal
+ * @returns {JSX.Element} The rendered SuccessModal component.
+ */
+const SuccessModal = ({
+  title,
+  description,
+  btnText,
+  btnFunction,
+  backdropVariant = 'blur', // default backdrop is blur
+  hideCloseButton = true, // default hide close button
+  placement = 'center', // default placement is center
+  outsideClickClose = true, // default outside click true
+}) => {
+  const dispatch = useDispatch();
+  const { alertModel } = useSelector((state) => state.utils);
+
+  /**
+   * Handles the close action.
+   */
+  const handleClose = () => {
+    dispatch(setAlertModel(false));
+    if (btnFunction) {
+      btnFunction();
+    }
+  };
+
+  /**
+   * Handles the outside click action.
+   */
+  const handleOutsideClick = () => {
+    if (outsideClickClose) {
+      dispatch(setAlertModel(false));
+    }
+  };
+
+  return (
+    <Modal
+      backdrop={backdropVariant}
+      isOpen={alertModel}
+      onOpenChange={handleOutsideClick}
+      hideCloseButton={hideCloseButton}
+      placement={placement}
+    >
+       <ModalContent className="p-8 text-center w-[90%] !max-w-[352px] !max-h-[290px] md:!max-h-[300px]">
+
+        <div className="mx-auto mb-4">
+          <SuccessSvg className="mx-auto" />
+        </div>
+
+        <Typography variant="P_SemiBold_H5" className="pb-2 text-primary-black">
+          {title}
+        </Typography>
+
+        <Typography
+          variant="P_Regular_H6"
+          className="block text-mid-black pb-6"
+        >
+          {description}
+        </Typography>
+        <div className="flex ">
+          <Button type="button" className="w-full" onClick={handleClose}>
+            {btnText ?? 'Continue'}
+          </Button>
+        </div>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default SuccessModal;
+```
+
+```jsx WarningModal.jsx
+import React from 'react';
+
+// ** import next ui
+import { Modal, ModalContent } from '@nextui-org/react';
+
+// ** import shared components
+import Typography from '@shared/Typography';
+import Button from '@shared/Button';
+
+// ** import assets
+import WarningSvg from '@icons/WarningSvg';
+
+// ** import redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setAlertModel } from '@redux/slices/utils';
+
+/**
+ * @typedef {'opaque' | 'blur' | 'transparent'} BackdropVariant
+ * @typedef {'auto' | 'top' | 'center' | 'bottom' | 'bottom-center' | 'top-center'} placement
+ */
+
+/**
+ * WarningModal component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title for the warning modal.
+ * @param {string} props.description - The description for the warning modal.
+ * @param {string} props.yesText - The text for the 'Yes' button.
+ * @param {string} props.noText - The text for the 'No' button.
+ * @param {Function} props.yesFunction - The function to call when 'Yes' is clicked.
+ * @param {Function} props.noFunction - The function to call when 'No' is clicked.
+ * @param {BackdropVariant} props.backdropVariant - The variant of the backdrop to render.
+ * @param {boolean} props.hideCloseButton - A boolean indicating whether a close button is present.
+ * @param {placement} props.placement - The placement of the modal
+ * @param {boolean} props.outsideClickClose - A boolean indicating whether the outside click closes the modal
+ * @returns {JSX.Element} The rendered WarningModal component.
+ */
+const WarningModal = ({
+  title,
+  description,
+  yesText,
+  noText,
+  yesFunction,
+  noFunction,
+  backdropVariant = 'blur', // default backdrop is blur
+  hideCloseButton = true, // default hide close button
+  placement = 'center', // default placement is center
+  outsideClickClose = true, // default outside click true
+}) => {
+  const dispatch = useDispatch();
+  const { alertModel } = useSelector((state) => state.utils);
+
+  /**
+   * Function to handle the 'No' button click.
+   */
+  const cancelFunction = () => {
+    dispatch(setAlertModel(false));
+    if (noFunction) {
+      noFunction();
+    }
+  };
+
+  /**
+   * Function to handle the 'Yes' button click.
+   */
+  const confirmFunction = () => {
+    dispatch(setAlertModel(false));
+    if (yesFunction) {
+      yesFunction();
+    }
+  };
+
+  /**
+   * Handles the outside click action.
+   */
+  const handleOutsideClick = () => {
+    if (outsideClickClose) {
+      cancelFunction();
+    }
+  };
+
+  return (
+    <Modal
+      backdrop={backdropVariant}
+      isOpen={alertModel}
+      onOpenChange={handleOutsideClick}
+      hideCloseButton={hideCloseButton}
+      placement={placement}
+      isDismissable
+      onClose={() => dispatch(setAlertModel(false))}
+    >
+      <ModalContent className="p-8 text-center w-[90%] !max-w-[352px] !max-h-[290px] md:!max-h-[300px]">
+        <div className="mx-auto mb-4">
+          <WarningSvg className="mx-auto" />
+        </div>
+        <Typography variant="P_SemiBold_H5" className="pb-2 text-primary-black">
+          {title}
+        </Typography>
+        <Typography
+          variant="P_Regular_H6"
+          className="block text-mid-black pb-6"
+        >
+          {description}
+        </Typography>
+        <div className="flex justify-between">
+          <Button type="button" className='!py-2 min-w-[139px]' variant="outline" onClick={cancelFunction}>
+            {noText ?? 'Cancel'}
+          </Button>
+          <Button type="button" className='!py-2 min-w-[139px]' onClick={confirmFunction}>
+            {yesText ?? 'Continue'}
+          </Button>
+        </div>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default WarningModal;
+```
+
+```jsx DangerModal.jsx
+import React from 'react';
+
+// ** import next ui
+import { Modal, ModalContent } from '@nextui-org/react';
+
+// ** import shared components
+import Typography from '@shared/Typography';
+import Button from '@shared/Button';
+
+// ** import assets
+import Danger from '@icons/Danger';
+
+// ** import redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setAlertModel } from '@redux/slices/utils';
+
+/**
+ * @typedef {'opaque' | 'blur' | 'transparent'} BackdropVariant
+ * @typedef {'auto' | 'top' | 'center' | 'bottom' | 'bottom-center' | 'top-center'} placement
+ */
+
+/**
+ * DangerModal component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the modal.
+ * @param {string} props.description - The description of the modal.
+ * @param {string} props.yesText - The text for the 'Yes' button.
+ * @param {string} props.noText - The text for the 'No' button.
+ * @param {Function} props.yesFunction - The function to call when 'Yes' is clicked.
+ * @param {Function} props.noFunction - The function to call when 'No' is clicked.
+ * @param {BackdropVariant} props.backdropVariant - The variant of the backdrop to render.
+ * @param {boolean} props.hideCloseButton - A boolean indicating whether a close button is present.
+ * @param {placement} props.placement - The placement of the modal
+ * @param {boolean} props.outsideClickClose - A boolean indicating whether the outside click closes the modal
+ * @returns {JSX.Element} The rendered DangerModal component.
+ */
+const DangerModal = ({
+  title,
+  description,
+  yesText,
+  noText,
+  yesFunction,
+  noFunction,
+  backdropVariant = 'blur', // default backdrop is blur
+  hideCloseButton = true, // default hide close button
+  placement = 'center', // default placement is center
+  outsideClickClose = true, // default outside click true
+}) => {
+  const dispatch = useDispatch();
+  const { alertModel } = useSelector((state) => state.utils);
+
+  /**
+   * Function to handle the 'No' button click.
+   */
+  const cancelFunction = () => {
+    if (noFunction) {
+      noFunction();
+    }
+    dispatch(setAlertModel(false));
+  };
+
+  /**
+   * Function to handle the 'Yes' button click.
+   */
+  const confirmFunction = () => {
+    dispatch(setAlertModel(false));
+    if (yesFunction) {
+      yesFunction();
+    }
+  };
+
+  /**
+   * Handles the outside click action.
+   */
+  const handleOutsideClick = () => {
+    if (outsideClickClose) {
+      cancelFunction();
+    }
+  };
+
+  return (
+    <Modal
+      backdrop={backdropVariant}
+      isOpen={alertModel}
+      onOpenChange={handleOutsideClick}
+      hideCloseButton={hideCloseButton}
+      placement={placement}
+    >
+      <ModalContent className="p-8 text-center w-[90%] !max-w-[358px] max-h-[318px]">
+        <div className="mx-auto mb-4 ">
+          <Danger className="mx-auto" />
+        </div>
+
+        <Typography variant="P_SemiBold_H5" className="pb-2 text-primary-black">
+          {title}
+        </Typography>
+
+        <Typography
+          variant="P_Regular_H6"
+          className="block text-mid-black pb-6"
+        >
+          {description}
+        </Typography>
+        <div className="flex justify-between">
+          <Button type="button" className='!py-2 min-w-[139px]' variant="outline" onClick={cancelFunction}>
+            {noText ?? 'Cancel'}
+          </Button>
+          <Button type="button" className='!py-2 min-w-[139px]' onClick={confirmFunction}>
+            {yesText ?? 'Continue'}
+          </Button>
+        </div>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default DangerModal;
+```
+
+```jsx LoginModal.jsx
+import React from 'react';
+
+// ** import next ui
+import { Modal, ModalContent } from '@nextui-org/react';
+
+// ** import shared components
+import Typography from '@shared/Typography';
+import Button from '@shared/Button';
+import Image from '@shared/Image';
+
+// ** import assets
+import WarningSvg from '@icons/WarningSvg';
+import googleSvg from '@svg/google.svg';
+
+// ** import redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginModel } from '@redux/slices/utils';
+
+// ** import config
+import env from '@src/config';
+
+/**
+ * @typedef {'opaque' | 'blur' | 'transparent'} BackdropVariant
+ * @typedef {'auto' | 'top' | 'center' | 'bottom' | 'bottom-center' | 'top-center'} placement
+ */
+
+/**
+ * LoginModal component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title for the modal.
+ * @param {string} props.description - The description for the modal.
+ * @param {string} props.btnText - The text for the button.
+ * @param {Function} props.btnFunction - The function to call when the button is clicked.
+ * @param {BackdropVariant} props.backdropVariant - The variant of the backdrop to render.
+ * @param {boolean} props.hideCloseButton - A boolean indicating whether a close button is present.
+ * @param {placement} props.placement - The placement of the modal
+ * @param {boolean} props.outsideClickClose - A boolean indicating whether the outside click closes the modal
+ * @returns {JSX.Element} The rendered LoginModal component.
+ */
+const LoginModal = ({
+  title,
+  description,
+  btnText,
+  btnFunction,
+  backdropVariant = 'blur', // default backdrop is blur
+  hideCloseButton = true, // default hide close button
+  placement = 'center', // default placement is center
+  outsideClickClose = true, // default outside click true
+}) => {
+  const dispatch = useDispatch();
+  const { loginModel } = useSelector((state) => state.utils);
+
+  /**
+   * Handles the close action.
+   */
+  const handleClose = () => {
+    dispatch(setLoginModel(false));
+    if (btnFunction) {
+      btnFunction();
+    }
+  };
+
+  /**
+   * redirects to google login
+   */
+  const redirectToExternalLink = () => {
+    try {
+      dispatch(setLoginModel(false));
+      window.location.href = `${env.BASE_URL}/api/v1/auth/google`;
+    } catch (error) {
+      console.log("Error at google login", error);
+    }
+  };
+
+  /**
+   * Handles the outside click action.
+   */
+  const handleOutsideClick = () => {
+    if (outsideClickClose) {
+      handleClose();
+    }
+  };
+
+  return (
+    <Modal
+      backdrop={backdropVariant}
+      isOpen={loginModel}
+      onOpenChange={handleOutsideClick}
+      hideCloseButton={hideCloseButton}
+      placement={placement}
+      onClose={handleClose}
+      isDismissable
+    >
+      <ModalContent className="p-8 text-center w-[90%] !max-w-[362px] !max-h-[290px] md:!max-h-[300px]">
+
+        <div className="mx-auto mb-4">
+          <WarningSvg className="mx-auto" />
+        </div>
+
+        <Typography variant="P_SemiBold_H5" className="pb-2 text-primary-black">
+          {title ?? 'Login required'}
+        </Typography>
+
+        <Typography
+          variant="P_Regular_H6"
+          className="block text-mid-black pb-6"
+        >
+          {description ?? 'Please login to enjoy special features'}
+        </Typography>
+        <div className="flex">
+          <div className=" w-full md:w-11/12 mx-auto ">
+            <Button
+              variant="outline"
+              className="w-full px-0"
+              onClick={redirectToExternalLink}
+            >
+              <img src={googleSvg} />
+              <Typography variant="P_SemiBold_H6" className="ml-2 whitespace-nowrap">
+                Continue with google
+              </Typography>
+            </Button>
+          </div>
+        </div>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default LoginModal;
+```
+</CodeGroup>
+
+
+### Separate Utilities and Helpers
+
+Place utility functions and helpers in separate files or directories.
+
+Example: Utility Function
+
+```jsx
+// utils/formatDate.js
+export const formatDate = (date) => {
+  // Format date logic
+};
+```
+
+### Define Types and Interfaces Separately
+
+For TypeScript or PropTypes in React, define types or interfaces in dedicated files.
+
+Example: Type Definitions
+
+```jsx
+// types/modalTypes.ts
+export type ModalVariant = 'success' | 'warning' | 'danger' | 'login';
+```
+
+### Form Validation in Separate Files
+
+Keep form validations separate, especially when using libraries like Formik or React Hook Form.
+
+Example: Form Validation Logic
+
+```jsx
+// validation/loginValidation.js
+import * as Yup from 'yup';
+
+export const loginValidationSchema = Yup.object().shape({
+  // Validation schema
+});
+```
+
+## Additional Examples
+
+- **Component Styles**: Define styles in separate CSS or SCSS files, or use CSS-in-JS styled components.
+- **API Calls**: Separate API call functions into a dedicated service or API layer.
+- **Contexts and Hooks**: Define React contexts and custom hooks in their own files.
+Conclusion
+Adopting a modular code structure by splitting your code into logical and coherent units not only enhances readability and maintainability but also prevents conflicts and encourages code reuse. This approach is essential in collaborative environments and large-scale applications.
