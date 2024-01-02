@@ -1,98 +1,39 @@
 ---
-title: 'Development'
-description: 'Learn how to preview changes locally'
+title: "Development Documentation Progress Tracker 📋"
+sidebarTitle: "Documentation Tracker"
+description: "A tracker for monitoring the progress of various development documentation pages."
+icon: "clipboard-list"
 ---
 
-<Info>
-  **Prerequisite** You should have installed Node.js (version 18.10.0 or
-  higher).
-</Info>
+Keep track of completed and pending documentation pages for software development best practices with this handy tracker.
 
-Step 1. Install Mintlify on your OS:
+## Completed Documentation Pages ✅
 
-<CodeGroup>
+- [x] **Organizing Imports**
+  - Guidelines on how to structure and order import statements.
 
-```bash npm
-npm i -g mintlify
-```
+- [x] **Centralized Typography**
+  - Discusses the implementation of a consistent typographic system using a centralized approach.
 
-```bash yarn
-yarn global add mintlify
-```
+- [x] **Managing Colors**
+  - Covers best practices for color management in projects using Tailwind CSS, CSS variables, and JSX.
 
-</CodeGroup>
+- [x] **Naming Conventions**
+  - Provides a comprehensive guide to naming conventions across different programming constructs.
 
-Step 2. Go to the docs are located (where you can find `mint.json`) and run the following command:
+## Pending Documentation Pages 📝
 
-```bash
-mintlify dev
-```
+- [ ] **Responsive Design Practices**
+  - To discuss strategies for crafting responsive layouts and interfaces.
 
-The documentation website is now available at `http://localhost:3000`.
+- [ ] **Advanced React Component Patterns**
+  - Aimed at exploring complex React component design patterns for scalable applications.
 
-### Custom Ports
+- [ ] **State Management in React**
+  - To elaborate on effective state management techniques using hooks and context.
 
-Mintlify uses port 3000 by default. You can use the `--port` flag to customize the port Mintlify runs on. For example, use this command to run in port 3333:
+- [ ] **Performance Optimization Techniques**
+  - Will cover methods to enhance web application performance, including both loading times and runtime efficiency.
 
-```bash
-mintlify dev --port 3333
-```
-
-You will see an error like this if you try to run Mintlify in a port that's already taken:
-
-```md
-Error: listen EADDRINUSE: address already in use :::3000
-```
-
-## Mintlify Versions
-
-Each CLI is linked to a specific version of Mintlify. Please update the CLI if your local website looks different than production.
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Startup
-  Plan](https://mintlify.com/pricing)
-</Tip>
-
-You should see the following if the deploy successfully went through:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Troubleshooting
-
-Here's how to solve some common problems when working with the CLI.
-
-<AccordionGroup>
-  <Accordion title="Mintlify is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Windows">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
-
-Repeat step 3.
-
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in a CLI version? [Check out the CLI changelog.](/changelog/command-line)
+- [ ] **Etc...**
+  - Any other topics that are not yet covered.
