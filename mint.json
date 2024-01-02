@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Best Practices Developer Document",
+  "name": "Developer Best Practices",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -30,12 +30,7 @@
       "url": "mailto:jacksonkasipeacock@gmail.com"
     }
   ],
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
+  "tabs": [],
   "anchors": [
     {
       "name": "Documentation",
@@ -43,14 +38,9 @@
       "url": "https://peacockindia.mintlify.app"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.peacockindia.in/blog"
+      "name": "Github",
+      "icon": "github",
+      "url": "https://github.com/jacksonkasi1/docs"
     }
   ],
   "navigation": [
@@ -60,22 +50,21 @@
     },
     {
       "group": "Developer Best Practices ⚒️",
-      "pages": ["docs/organizing-imports", "docs/typography", "docs/colors", "docs/code-splitting"]
+      "pages": [
+        "docs/organizing-imports",
+        "docs/typography",
+        "docs/colors",
+        "docs/code-splitting"
+      ]
     },
     {
       "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
-    },
-    {
-      "group": "Endpoint Examples",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "essentials/markdown",
+        "essentials/code",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation"
       ]
     }
   ],
