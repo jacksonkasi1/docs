@@ -1,0 +1,298 @@
+---
+title: "Naming Conventions in Software Development"
+sidebarTitle: "Naming Conventions"
+description: "Explore best practices for naming files, functions, variables, and more in software development, with examples of good and bad practices."
+icon: "tag"
+---
+
+<Frame>
+  <img
+    style={{ borderRadius: "0.5rem" }}
+    alt="Using a Centralized Typography Component in React"
+    src="https://images.unsplash.com/photo-1516703914899-e8303d01329a?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  />
+</Frame>
+
+Adopting effective naming conventions is crucial in software development for ensuring code clarity, maintainability, and ease of collaboration. This guide covers various aspects of naming, from file names to constants, providing guidelines for best practices.
+
+## CamelCase
+
+Used for object keys, function names, React state variables, and more.
+
+### Object Naming
+
+State object keys should be descriptive and follow camelCase.
+
+**Good Practice**:
+```js
+{
+  firstName: "",
+  lastName: "",
+  paymentId: "",
+}
+```
+
+**Bad Practice**:
+```js
+{
+  first: "",        // Not descriptive
+  lname: "",        // Inconsistent naming
+  id_payment: "",   // Mixed naming styles
+}
+```
+
+### Hook naming
+
+Combine 'use', action, and resource for clarity.
+
+**Good Practice**:
+
+```js
+function useLocalStorage() { /* ... */ }
+function useClickOutside() { /* ... */ }
+
+function useGetUserProfileAPI() { /* ... swr api function */ }
+function useUserLoginAPI() { /* ... swr api function */ }
+```
+
+**Bad Practice**:
+
+```js
+function getUserProfile() { /* ... */ }   // Not clear it's a hook
+function loginAPI() { /* ... */ }         // Should start with 'use' and describe action
+```
+
+
+### Function Naming
+
+Function names should clearly indicate their purpose and action.
+
+**Good Practice**:
+
+```js
+function handleChange() { /* ... */ }
+function handleSubmit() { /* ... */ }
+function getUserProfileAPI() { /* ... */ } // REST API Call Function
+```
+
+**Bad Practice**:
+```js
+function handle() { /* ... */ }             // Too vague
+function submitData() { /* ... */ }         // Verb should come first
+```
+
+## PascalCase
+
+Used for class names, constructor functions, and React component names.
+
+### File Naming
+
+File names for classes and React components should use PascalCase.
+
+**Good Practice**:
+
+```plaintext
+UserProfile.js
+InvoiceList.jsx
+```
+
+**Bad Practice**:
+
+```js
+userProfile.js          // Should use PascalCase
+invoice_list.jsx        // Should not mix cases
+```
+
+## snake_case
+
+Commonly used for database fields and table names.
+
+### Database Schema Naming
+
+**Tables Naming**:
+
+Good Practice:
+```plaintext
+tbl_users
+tbl_payment_history
+```
+
+Bad Practice:
+```js
+usersTable          // Prefix 'tbl_' makes it clear it's a table
+paymentHistory      // Lacks prefix
+```
+
+**Table Fields Naming**:
+
+Good Practice:
+
+```plaintext
+first_name
+last_name
+email_address
+```
+
+Bad Practice:
+
+```js
+FirstName           // Use snake_case for database fields
+last name           // Avoid spaces; use underscores
+emailAddress        // Stick to one case style, preferably snake_case
+```
+
+## UPPER_CASE_SNAKE_CASE
+
+Used for constants and environment variable names
+
+### Constants
+
+**Good Practice**:
+
+```js
+const MAX_RETRY_COUNT = 3;
+const DEFAULT_TIMEOUT = 1000;
+const API_BASE_URL = 'https://api.example.com';
+```
+
+**Bad Practice**:
+
+```js
+const maxRetry = 3;              // Should be uppercase
+const DefaultTimeout = 1000;     // Should not use camelCase or PascalCase
+const ApiBaseUrl = 'https://...';// Constants should be in uppercase
+```
+
+### Environment Variables
+
+**Good Practice**:
+```plaintext
+DATABASE_URL
+ACCESS_TOKEN_SECRET
+REDIS_PORT
+```
+
+**Bad Practice**:
+```js
+dbUrl            // Not uppercase
+accessToken      // Should use underscores to separate words
+RedisPort        // Not following the uppercase convention
+```
+
+## kebab-case
+
+Used for CSS class names and URL slugs.
+
+### CSS Class Naming
+
+**Good Practice**:
+
+```css
+.btn-primary
+.btn-secondary
+```
+
+**Bad Practice**:
+
+```css
+.btnPrimary
+.btnSecondary
+```
+
+## Other Naming Conventions ✨
+
+### Configuration Files
+
+Configuration file names should indicate their purpose and the environment they're used in.
+
+**Good Practice**:
+
+```plaintext
+development.config.js
+production.config.js
+test.config.js
+```
+
+**Bad Practice**:
+```js
+configDev.js              // Inconsistent naming
+prodConfig.js             // Ambiguity in file purpose
+test_conf.js              // Mixing naming styles
+```
+
+
+Certainly! Let's include examples for folder naming conventions as well. In software development, folder names are typically given in `PascalCase` or `kebab-case`, depending on the project's convention. Here's how I would incorporate this into the document:
+
+---
+
+### Folder Naming
+
+Folder names should be clear, consistent, and indicative of their contents. Depending on the project's convention, `PascalCase` or `kebab-case` can be used.
+
+<Tip>
+  Recomend using `kebab-case` for folder names.
+</Tip>
+
+**PascalCase for Folder Naming**
+
+Good Practice:
+
+```plaintext
+Components/
+Utilities/
+AuthPages/
+UserProfile/
+```
+
+Bad Practice:
+
+```js
+components/          // Should be PascalCase for consistency
+utilities_folder/    // Should not mix cases or use underscores
+auth-pages/          // Should use either kebab-case or PascalCase consistently
+UserProfilePage/     // Redundant 'Page' suffix in a folder name
+```
+
+**kebab-case for Folder Naming**
+
+Good Practice:
+
+```plaintext
+components/
+utilities/
+auth-pages/
+user-profile/
+```
+
+Bad Practice:
+
+```js
+Components/          // Should be lowercase for kebab-case
+utilitiesFolder/     // Should use dashes, not camelCase
+Auth_Pages/          // Avoid mixing case styles and underscores
+UserProfilePage/     // Redundant 'Page' suffix and incorrect case style
+```
+
+---
+
+
+##  Programming Case Styles Cheat Sheet📘
+
+Quick Reference for Naming Conventions in Different Programming Scenarios
+
+| Case Style              | Usage                                                       |
+|-------------------------|-------------------------------------------------------------|
+| camelCase               | Object keys, function names, variables, React state variables, method names in classes |
+| PascalCase              | Class names, constructor functions, React component names, interface names (in languages like TypeScript) |
+| snake_case              | Database fields, database table names, variable and function names in Python |
+| kebab-case              | CSS class names, file names, URL slugs                      |
+| UPPER_CASE_SNAKE_CASE   | Constants, environment variable names                       |
+| Hungarian Notation      | Prefixing variable names with type indicators (less common) |
+
+
+
+## Conclusion
+
+Adopting clear and consistent naming conventions enhances the overall quality of your codebase, making it more accessible and easier to maintain. By following these guidelines, you'll foster a more efficient and collaborative development environment.
+
+
