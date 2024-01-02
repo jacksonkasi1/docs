@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Peacock India Developer Document",
+  "name": "Best Practices Developer Document",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -15,17 +15,21 @@
       "to": "#07C983"
     }
   },
-  "feedback.thumbsRating": true,
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true,
+    "thumbsRating": true
+  },
+  "topbarCtaButton": {
+    "type": "github",
+    "url": "https://github.com/jacksonkasi1/docs"
+  },
   "topbarLinks": [
     {
       "name": "Support",
       "url": "mailto:jacksonkasipeacock@gmail.com"
     }
   ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
   "tabs": [
     {
       "name": "API Reference",
