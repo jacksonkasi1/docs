@@ -22,7 +22,7 @@ Understanding and maintaining a consistent order for import statements in React 
 
 Always start by importing core packages. These are essential libraries that your project depends on.
 
-```jsx
+```js
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 ```
@@ -31,7 +31,7 @@ import { useNavigate } from "react-router-dom";
 
 Next, import assets like images, SVGs, and icons. Grouping these together helps in identifying resource dependencies at a glance.
 
-```jsx
+```js
 // ** import icons
 import BackSvg from '@icons/BackSvg';
 import SearchSvg from '@icons/SearchSvg';
@@ -47,7 +47,7 @@ import userImage from "@illustration/userImage.webp";
 
 After assets, bring in third-party packages. These are external libraries that are not part of the core packages.
 
-```jsx
+```js
 // ** import third party
 import { toast } from "react-toastify";
 import { CircularProgress } from "@nextui-org/react";
@@ -57,7 +57,7 @@ import { CircularProgress } from "@nextui-org/react";
 
 Shared components are reusable components used across different parts of your application.
 
-```jsx
+```js
 // ** import shared components
 import Image from "@shared/Image";
 import Button from "@shared/Button";
@@ -68,7 +68,7 @@ import Typography from "@shared/Typography";
 
 Following shared components, import specific components that are used in your current module.
 
-```jsx
+```js
 // ** import components
 import AddFoodItem from "@components/AddFoodItem";
 import CalendarPopup from "@components/CalendarPopup";
@@ -78,7 +78,7 @@ import CalendarPopup from "@components/CalendarPopup";
 
 Sub-pages or section imports come next. These are often specific to the module you're working on.
 
-```jsx
+```js
 // ** import sub pages/sections
 import Section1 from "./Section1";
 import Section2 from "./Section2";
@@ -89,7 +89,7 @@ import Section3 from "./Section3";
 
 Configuration files like environment settings should be imported thereafter.
 
-```jsx
+```js
 // ** import config
 import env from "@src/config";
 ```
@@ -98,7 +98,7 @@ import env from "@src/config";
 
 For state management tools (like Redux), import them after your configuration files.
 
-```jsx
+```js
 // ** import state manager
 import { useDispatch } from "react-redux";
 import { setLocale } from "@src/redux/slices/language";
@@ -108,7 +108,7 @@ import { setLocale } from "@src/redux/slices/language";
 
 Utility functions or libraries are imported next. They usually provide helper functions used across components.
 
-```jsx
+```js
 // ** import utils
 import { useStorableState } from "@utils/useStorable";
 ```
@@ -117,7 +117,7 @@ import { useStorableState } from "@utils/useStorable";
 
 Custom hooks, which encapsulate logic, are imported following utilities.
 
-```jsx
+```js
 // ** import hooks
 import useStorable from "@src/utils/useStorable";
 ```
@@ -126,7 +126,7 @@ import useStorable from "@src/utils/useStorable";
 
 Finally, import your API functions or services. This keeps API-related imports organized and easily identifiable.
 
-```jsx
+```js
 // ** import apis
 import { getUserProfileApi } from "@api/auth";
 import { confirmOrderApi } from "@api/cart";
@@ -140,7 +140,7 @@ Click on the following dropdown to view a sample `index.js` file with imports or
 
 <Accordion icon="code" title="View Example of organized imports 👀">
 
-```jsx index.js
+```js index.js
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 

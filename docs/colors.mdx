@@ -31,7 +31,7 @@ Avoid defining colors directly within your components or CSS classes. This leads
 }
 ```
 
-```jsx
+```js
 /* Bad Practice in JSX */
 const MyComponent = () => (
   <div style={{ color: '#333333', backgroundColor: '#ffffff' }}>
@@ -98,7 +98,7 @@ module.exports = {
 
 ### Using Tailwind Classes in JSX
 
-```jsx
+```js
 const MyComponent = () => (
   <h1 className="text-primary bg-secondary">Welcome to My Site</h1>
 );
@@ -110,7 +110,7 @@ Incorporating CSS variables in JSX provides a seamless way to apply global color
 
 ### Good Practice in JSX
 
-```jsx
+```js
 const MyComponent = () => (
   <div style={{ color: "var(--text-color)", backgroundColor: "var(--background-color)" }}>
     Welcome

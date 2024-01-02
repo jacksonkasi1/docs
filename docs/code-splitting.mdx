@@ -28,7 +28,7 @@ Monolithic or single-file code structures can lead to several issues:
 Avoid placing all components, utilities, and types in one large file. For instance, defining multiple modals, utilities, and type declarations in a single file leads to clutter and confusion.
 
 <CodeGroup>
-```jsx Example Large files
+```js Example Large files
 // Bad Practice: Everything in one file
 import React from 'react';
 // Imports for components, utilities, types all mixed together...
@@ -42,7 +42,7 @@ const AnotherComponent = () => { /* ... */ };
 export default MyComponent;
 ```
 
-```jsx Name Clashing Example 1
+```js Name Clashing Example 1
 // Function to calculate the area of a circle
 function calculateArea(radius) {
     return Math.PI * radius * radius;
@@ -57,7 +57,7 @@ function calculateArea(side) {
 const circleArea = calculateArea(5); // Intended to calculate area of a circle
 ```
 
-```jsx Name Clashing Example 2
+```js Name Clashing Example 2
 
 import React, { useState } from 'react';
 
@@ -96,7 +96,7 @@ const LargeComponent = () => {
 
 Organize components into separate files and directories. This improves readability and maintenance.
 
-```jsx
+```js
 // Good Practice: Modular structure with sub-components
 import React from 'react';
 import SuccessModal from './SuccessModal';
@@ -128,7 +128,7 @@ Example: Modal Component Structure
 
 
 <CodeGroup>
-```jsx index.jsx
+```js index.jsx
 import React from 'react';
 
 // ** import sub components
@@ -178,7 +178,7 @@ const Modal = ({ variant, ...props }) => {
 export default Modal;
 ```
 
-```jsx SuccessModal.jsx
+```js SuccessModal.jsx
 import React from 'react';
 
 // ** import next ui
@@ -283,7 +283,7 @@ const SuccessModal = ({
 export default SuccessModal;
 ```
 
-```jsx WarningModal.jsx
+```js WarningModal.jsx
 import React from 'react';
 
 // ** import next ui
@@ -404,7 +404,7 @@ const WarningModal = ({
 export default WarningModal;
 ```
 
-```jsx DangerModal.jsx
+```js DangerModal.jsx
 import React from 'react';
 
 // ** import next ui
@@ -525,7 +525,7 @@ const DangerModal = ({
 export default DangerModal;
 ```
 
-```jsx LoginModal.jsx
+```js LoginModal.jsx
 import React from 'react';
 
 // ** import next ui
@@ -667,7 +667,7 @@ Place utility functions and helpers in separate files or directories.
 
 Example: Utility Function
 
-```jsx
+```js
 // utils/formatDate.js
 export const formatDate = (date) => {
   // Format date logic
@@ -680,7 +680,7 @@ For TypeScript or PropTypes in React, define types or interfaces in dedicated fi
 
 Example: Type Definitions
 
-```jsx
+```js
 // types/modalTypes.ts
 export type ModalVariant = 'success' | 'warning' | 'danger' | 'login';
 ```
@@ -691,7 +691,7 @@ Keep form validations separate, especially when using libraries like Formik or R
 
 Example: Form Validation Logic
 
-```jsx
+```js
 // validation/loginValidation.js
 import * as Yup from 'yup';
 

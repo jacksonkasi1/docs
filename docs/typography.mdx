@@ -26,7 +26,7 @@ Repetitive inline styling for text elements is a common issue. It not only clutt
 
 Here's an example of what to avoid:
 
-```jsx
+```js
 <h1 className="text-3xl font-bold">Login Page</h1>
 <p className="text-[#61748E] font-medium  pt-2">
   hello world
@@ -41,7 +41,7 @@ A better approach is to use a centralized Typography component. This approach en
 
 Here's how you can use the Typography component:
 
-```jsx
+```js
 <Typography variant="T_Bold_H5" className="mx-auto">Login Page</Typography>
 
 <Button>
@@ -61,7 +61,7 @@ Here's how you can use the Typography component:
 
 The Typography component is designed to handle various text styles and animations. Here's a brief overview of its structure and usage:
 
-```jsx
+```js
 // Import statements
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -84,7 +84,7 @@ import { motion as m } from "framer-motion";
 
 ### Usage Example
 
-```jsx
+```js
 <Typography variant="T_Bold_H1" animate="move">
   Welcome to Our Site
 </Typography>
@@ -96,7 +96,7 @@ Click on the following dropdown to view a sample `Typography.jsx` file with all 
 
 <Accordion  icon="code" title="View Typography code 👀">
 
-```jsx Typography.jsx
+```js Typography.jsx
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
