@@ -46,7 +46,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction", "development"]
     },
     {
       "group": "Developer Best Practices ⚒️",
@@ -54,7 +54,8 @@
         "docs/organizing-imports",
         "docs/typography",
         "docs/colors",
-        "docs/code-splitting"
+        "docs/code-splitting",
+        "docs/programming-case-types"
       ]
     },
     {
