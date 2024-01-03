@@ -56,7 +56,8 @@
         "docs/colors",
         "docs/code-splitting",
         "docs/programming-case-types",
-        "docs/code-documentation"
+        "docs/code-documentation",
+        "docs/typeScript-essentials"
       ]
     },
     {
