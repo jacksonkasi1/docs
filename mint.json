@@ -55,7 +55,8 @@
         "docs/typography",
         "docs/colors",
         "docs/code-splitting",
-        "docs/programming-case-types"
+        "docs/programming-case-types",
+        "docs/code-documentation"
       ]
     },
     {

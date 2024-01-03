@@ -1,0 +1,120 @@
+---
+title: "Best Practices in Code Documentation and Formatting"
+sidebarTitle: "Code Documentation"
+icon: "book"
+description: "Learn the essentials of using JSDoc, TypeScript, and effective commenting, along with indentation and formatting best practices."
+---
+
+<Frame>
+  <img
+    style={{ borderRadius: "0.5rem" }}
+    alt="Best Practices for Import Statements in React"
+    src="https://images.unsplash.com/photo-1553198194-1b81858f6436?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  />
+</Frame>
+
+Effective documentation and consistent formatting are key to making code readable and maintainable. This guide covers the usage of JSDoc, the benefits of TypeScript, and the dos and don'ts of commenting and formatting.
+
+## JSDoc for JavaScript
+
+JSDoc is a popular tool for documenting JavaScript code. It helps in understanding the purpose of functions, parameters, and return types.
+
+### Good JSDoc Example
+
+```js
+/**
+ * Adds two numbers together.
+ * @param {number} a - The first number.
+ * @param {number} b - The second number.
+ * @returns {number} The sum of the two numbers.
+ */
+function sum(a, b) {
+  return a + b;
+}
+```
+
+### Bad JSDoc Example
+
+```js
+// Adds a and b
+function sum(a, b) {
+  return a + b;
+}
+// Missing detailed JSDoc comment
+```
+
+## The Importance of TypeScript
+
+TypeScript provides strong typing, which helps catch errors early, making code more robust and maintainable.
+
+- **Error Detection**: Catching type-related errors during development.
+- **Readability**: Making the code more readable and understandable.
+- **Refactoring**: Easier and safer code refactoring.
+
+## Including Comments
+
+Well-placed comments can greatly enhance the readability and understandability of code.
+
+### Good Commenting Practice
+
+```js
+// Calculate the area of a rectangle
+function calculateArea(length, width) {
+  return length * width;
+}
+```
+
+### Bad Commenting Practice
+
+```js
+// Calculate area
+function calculateArea(l, w) {
+  return l * w;
+  // Ambiguous and unhelpful comment
+}
+```
+
+## Indentation and Formatting
+
+Consistent indentation and formatting are crucial for readability.
+
+### Good Practice
+
+Use consistent indentation (e.g., 2 or 4 spaces) and follow a style guide.
+
+```js
+function exampleFunction() {
+  if (condition) {
+    // code
+  }
+}
+```
+
+### Bad Practice
+
+Mixing tabs and spaces or inconsistent indentation.
+
+```js
+function exampleFunction() {
+  if (condition) {
+    // code
+  }
+}
+// Inconsistent indentation
+```
+
+## Consistent Formatting
+
+Adhering to a consistent code formatting style across your project is important.
+
+### Good Practice
+
+Follow a formatting standard like Airbnb's JavaScript Style Guide or Google's JavaScript Style Guide.
+
+### Bad Practice
+
+Inconsistent naming conventions, brace styles, or line breaks.
+
+---
+
+Remember, the goal of these practices is to make your code as clear and maintainable as possible. Well-documented and formatted code not only benefits you but also your fellow developers who may work on your code in the future.
