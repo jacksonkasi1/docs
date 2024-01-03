@@ -2,7 +2,7 @@
 title: "Best Practices in Code Documentation and Formatting"
 sidebarTitle: "Code Documentation"
 icon: "book"
-description: "Learn the essentials of using JSDoc, TypeScript, and effective commenting, along with indentation and formatting best practices."
+description: "Learn the essentials of using JSDoc, and effective commenting, along with indentation and formatting best practices."
 ---
 
 <Frame>
@@ -13,7 +13,7 @@ description: "Learn the essentials of using JSDoc, TypeScript, and effective com
   />
 </Frame>
 
-Effective documentation and consistent formatting are key to making code readable and maintainable. This guide covers the usage of JSDoc, the benefits of TypeScript, and the dos and don'ts of commenting and formatting.
+Effective documentation and consistent formatting are key to making code readable and maintainable. This guide covers the usage of JSDoc and the dos and don'ts of commenting and formatting.
 
 ## JSDoc for JavaScript
 
@@ -43,19 +43,61 @@ function sum(a, b) {
 // Missing detailed JSDoc comment
 ```
 
-## The Importance of TypeScript
+## Proper Use of Multi-Line Comments
 
-TypeScript provides strong typing, which helps catch errors early, making code more robust and maintainable.
+Multi-line comments are useful for providing detailed explanations or summarizing blocks of code.
 
-- **Error Detection**: Catching type-related errors during development.
-- **Readability**: Making the code more readable and understandable.
-- **Refactoring**: Easier and safer code refactoring.
+### Good Multi-Line Commenting Practice
 
-## Including Comments
+```js
+/**
+ * This function calculates the total price of an order
+ * including tax and discount. It applies a tax rate of 8%,
+ * and a discount rate is applied if applicable.
+ *
+ * @param {number} basePrice - The base price of the order.
+ * @param {boolean} hasDiscount - Indicates if the order has a discount.
+ * @returns {number} The total price after applying tax and discount.
+ */
+function calculateTotalPrice(basePrice, hasDiscount) {
+  const taxRate = 0.08;
+  let discount = 0;
+  if (hasDiscount) {
+    discount = basePrice * 0.1; // 10% discount
+  }
+  return basePrice + (basePrice * taxRate) - discount;
+}
+```
 
-Well-placed comments can greatly enhance the readability and understandability of code.
+### Bad Multi-Line Commenting Practice
 
-### Good Commenting Practice
+```js
+/*
+  This function calculates the price.
+  It has parameters.
+  It returns a number.
+*/
+function calculateTotalPrice(basePrice, hasDiscount) {
+  // The actual function code
+}
+// Non-informative, redundant comments
+```
+
+## Including Meaningful Comments & Avoiding Redundancy
+
+Strategic comments enhance code clarity, but beware of redundancy. Prioritize meaningful insights to facilitate collaboration and understanding among developers.
+
+### Good Practice
+
+```js
+// Loop through users and apply discounts to eligible ones
+users.forEach(user => {
+  if (user.isEligibleForDiscount()) {
+    applyDiscount(user);
+  }
+});
+```
+
 
 ```js
 // Calculate the area of a rectangle
@@ -64,7 +106,19 @@ function calculateArea(length, width) {
 }
 ```
 
-### Bad Commenting Practice
+### Bad Practice
+
+```js
+// Start a loop
+users.forEach(user => {
+  // Check if the user is eligible for discount
+  if (user.isEligibleForDiscount()) {
+    // Apply discount to the user
+    applyDiscount(user);
+  }
+});
+// Redundant comments that simply restate the code
+```
 
 ```js
 // Calculate area
@@ -96,9 +150,9 @@ Mixing tabs and spaces or inconsistent indentation.
 
 ```js
 function exampleFunction() {
-  if (condition) {
-    // code
-  }
+if(condition){
+// code
+}
 }
 // Inconsistent indentation
 ```
