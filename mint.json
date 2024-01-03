@@ -59,13 +59,10 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Essential Resources 📖",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation"
+        "resources/essential-resources",
+        "resources/must-have-tools"
       ]
     }
   ],
