@@ -1,0 +1,198 @@
+---
+title: "Optimizing Code Logic in JavaScript and TypeScript"
+sidebarTitle: "Code Optimization"
+icon: "gauge"
+description: "Discover strategies for streamlining code execution through best practices in JavaScript and TypeScript, including examples of recursion and algorithm optimization."
+---
+
+<Frame>
+<img
+  style={{ borderRadius: '0.5rem' }}
+  alt="Best Practices for Import Statements in React"
+  src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+/>
+</Frame>
+
+
+Efficient code is not only about what it does but also how fast and resource-effectively it does it. This document explores best practices for writing efficient JavaScript and TypeScript code, touching upon recursive functions, algorithm choice, and optimization techniques.
+
+## Efficient Function Execution
+
+### Good Example: Efficient Function
+
+```typescript
+function quickSort(data: number[]): number[] {
+  // Efficient sorting logic
+}
+```
+
+### Bad Example: Inefficient Function
+
+```typescript
+function slowSort(data: number[]): number[] {
+  // Inefficient sorting logic with unnecessary complexity
+}
+```
+
+---
+
+In the context of code efficiency and best practices, the two provided functions demonstrate how different approaches to a similar problem can affect readability and maintainability:
+
+### Good Example: Using a Mapping Object
+
+```typescript
+type IconFillColor = "primary" | "secondary";
+
+const iconFillColors: Record<IconFillColor, string> = {
+  "primary": "#000000",
+  "secondary": "#808080",
+};
+
+export function getIconFillColor(fillColor: IconFillColor) {
+  return iconFillColors[fillColor] ?? throw new Error(`Invalid fill color: ${fillColor}`);
+}
+```
+
+### Bad Example: Using a Switch Statement
+
+```typescript
+type IconFillColor = "primary" | "secondary";
+
+export function getIconFillColor(fillColor: IconFillColor) {
+  switch (fillColor) {
+    case "primary":
+      return "#000000";
+    case "secondary":
+      return "#808080";
+    default:
+      throw new Error(`Invalid fill color: ${fillColor}`);
+  }
+}
+```
+
+The "good" example uses a mapping object which is more succinct and easier to manage, especially when dealing with a large number of cases. It avoids the boilerplate of a `switch` statement and makes the function shorter and cleaner.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">In TypeScript, I often prefer to use a Record over a switch statement.<br/><br/>✅ It&#39;s easy to read.<br/>✅ It&#39;s typically less code.<br/>✅ It&#39;s safer. With a switch, I have to do extra work to assure it&#39;s exhaustive. With a Record, if I forget to handle a case, it won&#39;t compile. <a href="https://t.co/JwDBDMeVqH">pic.twitter.com/JwDBDMeVqH</a> </p>  &mdash; Cory House (@housecor) <a href="https://twitter.com/housecor/status/1742531006744195329?ref_src=twsrc%5Etfw">January 3, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+## Simplifying Complex Logic with Design Patterns  💥
+
+Certainly, using multiple `if` conditions can make code hard to read and maintain. A better approach might be to encapsulate each condition in its own function or use a strategy pattern. Here's a comparison:
+
+### Bad Example: Multiple If Conditions
+
+```javascript
+function processRequest(type) {
+  if (type === "create") {
+    // create logic
+  } else if (type === "update") {
+    // update logic
+  } else if (type === "delete") {
+    // delete logic
+  }
+  // ...more conditions...
+}
+```
+
+### Good Example: Strategy Pattern with Functions
+
+```javascript
+const operations = {
+  create: (data) => {
+    // create logic
+  },
+  update: (data) => {
+    // update logic
+  },
+  delete: (data) => {
+    // delete logic
+  },
+  // ...more operations...
+};
+
+function processRequest(type, data) {
+  const operation = operations[type];
+  if (operation) {
+    operation(data);
+  } else {
+    throw new Error("Invalid operation type");
+  }
+}
+```
+
+In the "good" example, each operation is encapsulated in its own function within a `operations` object. This not only makes the `processRequest` function cleaner but also simplifies adding or modifying operations in the future.
+
+> This is just one way to approach the problem. Other design patterns can also be used to simplify complex logic.
+
+
+## Tips for Writing Efficient TypeScript Code
+
+Leverage TypeScript’s type system for performance and safety.
+
+### Good Example: Leveraging TypeScript’s Types for Performance
+
+```typescript
+interface Comparable {
+  compareTo(other: Comparable): number;
+}
+
+// Implementing an efficient sorting algorithm using the Comparable interface
+```
+
+### Bad Example: Ignoring TypeScript’s Type System
+
+```typescript
+// Using 'any' type reduces the ability to optimize and can lead to runtime errors
+function sortItems(items: any[]): any[] {
+  // Sorting logic without type checks
+}
+```
+
+## Recursive Functions and Performance
+
+Recursion can be elegant but sometimes comes at the cost of performance.
+
+### Good Example: Tail-Recursive Optimization
+
+```javascript
+function factorial(n, accumulator = 1) {
+  if (n === 0) {
+    return accumulator;
+  }
+  return factorial(n - 1, n * accumulator);
+}
+```
+
+### Bad Example: Non-Optimized Recursive Function
+
+```javascript
+function factorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+  return n * factorial(n - 1); // Potential stack overflow for large n
+}
+```
+
+## Choosing the Right Algorithm
+
+The efficiency of an algorithm significantly impacts performance, especially with large datasets.
+
+### Good Example: Efficient Algorithm Selection
+
+```typescript
+// Binary search for sorted arrays
+function binarySearch(array: number[], target: number): boolean {
+  // Binary search logic
+}
+```
+
+### Bad Example: Inefficient Algorithm Selection
+
+```typescript
+// Linear search on a sorted array is less efficient
+function linearSearch(array: number[], target: number): boolean {
+  // Linear search logic
+}
+```

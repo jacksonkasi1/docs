@@ -58,7 +58,8 @@
         "docs/programming-case-types",
         "docs/code-documentation",
         "docs/typeScript-essentials",
-        "docs/react-code-structure"
+        "docs/react-code-structure",
+        "docs/code-optimization"
       ]
     },
     {
