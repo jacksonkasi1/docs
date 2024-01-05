@@ -1,0 +1,236 @@
+---
+title: "Secure Coding Practices in Web Development"
+sidebarTitle: "Secure Coding"
+icon: "shield"
+description: "Learn how to write secure code to protect web applications from common vulnerabilities, with examples of dos and don'ts."
+---
+
+Security is a paramount aspect of web development. Writing secure code is crucial to protect against vulnerabilities like SQL injection, XSS (Cross-Site Scripting), and CSRF (Cross-Site Request Forgery). This document outlines best practices for writing secure code along with examples.
+
+## Preventing SQL Injection 💉
+
+### Vulnerable Code Example
+
+```javascript
+// Using string concatenation in SQL queries
+const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+```
+
+### Secure Code Example
+
+```javascript
+// Using parameterized queries
+const query = `SELECT * FROM users WHERE username = ? AND password = ?`;
+db.query(query, [username, password]);
+```
+
+## Protecting Against XSS Attacks 🛡️
+
+#### Understanding the Risk
+
+Cross-Site Scripting (XSS) attacks occur when malicious scripts are injected into webpages viewed by other users. This can lead to data theft, session hijacking, and other security breaches.
+
+[To learn more about XSS ↗️](https://www.esecurityplanet.com/endpoint/prevent-xss-attacks)
+
+### Vulnerable Code Example
+
+```javascript
+// Rendering user input directly to the DOM
+document.getElementById("user-content").innerHTML = userInput;
+```
+
+### Secure Code Example
+
+```javascript
+// Escaping user input before rendering
+const safeInput = escapeHtml(userInput);
+document.getElementById("user-content").textContent = safeInput;
+```
+
+```javascript
+// Example: Using DOMPurify to sanitize user input
+const cleanInput = DOMPurify.sanitize(userInput);
+document.getElementById("user-content").innerHTML = cleanInput;
+```
+
+## Mitigating CSRF Attacks 🛡️
+
+#### Understanding the Risk
+
+CSRF attacks force a logged-on victim to submit a request to a web application on which they are currently authenticated. These attacks can be used to perform actions on behalf of the user without their consent.
+
+[To learn more about CSRF ↗️](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
+
+### Vulnerable Code Example
+
+```html
+<!-- GET request for sensitive action -->
+<a href="/delete-account">Delete Account</a>
+```
+
+### Secure Code Example
+
+**Mitigating CSRF Attacks**
+
+```javascript
+// Backend: Generate and validate CSRF tokens
+app.use(csrfProtection);
+app.post("/delete-account", (req, res) => {
+  // Validate CSRF token
+});
+```
+
+```html
+<!-- Frontend: Include CSRF token in form -->
+<form action="/delete-account" method="POST">
+  <input type="hidden" name="_csrf" value="{csrfToken}" />
+  <button type="submit">Delete Account</button>
+</form>
+```
+
+[know more](https://brightsec.com/blog/csrf-token)
+
+These sections provide an understanding of XSS and CSRF risks, along with practical code examples and links for further reading, enhancing the security knowledge of developers.
+
+## Handling Vulnerable Dependencies 🐞
+
+### Using npm-audit to Identify Vulnerabilities
+
+Run `npm audit` to identify and fix insecure dependencies. Regularly update your packages to the latest, non-vulnerable versions.
+
+### Incorporating Snyk for Continuous Security
+
+Integrate [Snyk](https://snyk.io/) into your development workflow for continuous monitoring and fixing of vulnerabilities in dependencies.
+
+## Managing Environment Variables Securely 🔐
+
+### Storing Secrets in `.env` Files
+
+Store sensitive information like API keys and passwords in `.env` files and access them via `process.env` in your code.
+
+**Bad Practice: Hardcoding secrets in code**
+
+```js
+// Bad Practice: Hardcoded secret
+const API_KEY = "hardcoded-secret-key";
+```
+
+**Good Practice: Storing secret in .env file**
+
+```js
+// Example of accessing a secret from .env file
+require("dotenv").config();
+const API_KEY = process.env.API_KEY;
+```
+
+### Using Secure Storage for Environment Secrets
+
+For higher security, especially in production, use services like [1Password](https://1password.com/developers) or [Phase](https://phase.dev/). These services securely manage and inject secrets into your application.
+
+**Example: Integrating 1Password**
+
+```javascript
+// Assuming you have 1Password CLI set up and secrets synced
+const { op } = require("1password");
+(async () => {
+  const apiKey = await op.getItem("API_KEY");
+  process.env.API_KEY = apiKey;
+})();
+```
+
+In this example, the 1Password CLI is used to securely fetch the API key and set it as an environment variable. This method enhances security by avoiding hardcoded secrets in your codebase or `.env` files.
+
+[To learn more ↗️](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+
+## Preventing Brute Force Attacks
+
+Implement rate limiting and account lockout mechanisms on your backend to prevent brute force attacks.
+
+### Example: Rate Limiting with Express-rate-limit
+
+```js
+const rateLimit = require("express-rate-limit");
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message: "Too many requests from this IP, please try again after 15 minutes",
+});
+
+app.use("/api/", apiLimiter);
+```
+
+## Preventing Password Theft via Reset Links 🔗🔑
+
+### Understanding the Risk
+
+When users click a password reset link (e.g., `https://example.com/reset-password?token=12345`), the page may load external resources, potentially exposing the URL with the token.
+
+[To learn more ↗️](https://web.dev/articles/referrer-best-practices/)
+
+### Mitigating the Risk
+
+Implement a `Referrer-Policy` on both the backend (for global settings) and the frontend (for specific pages, especially in SPA frameworks like React or Next.js). This policy controls the referrer information sent to other domains, protecting sensitive data in the URL.
+
+#### Backend Implementation in Express.js
+
+```javascript
+app.use((req, res, next) => {
+  res.setHeader("Referrer-Policy", "origin-when-cross-origin");
+  next();
+});
+```
+
+#### Frontend Implementation in React.js/Next.js
+
+Use `react-helmet` (React) or set headers in `_document.js` (Next.js) to include the `Referrer-Policy`.
+
+```jsx
+// React with react-helmet
+<Helmet>
+  <meta name="referrer" content="origin-when-cross-origin" />
+</Helmet>
+
+// Next.js in _document.js
+<Head>
+  <meta name="referrer" content="origin-when-cross-origin" />
+</Head>
+```
+
+## Preventing Parameter Tampering 💸
+
+### Understanding the Risk
+
+In e-commerce applications or any other payment relaed application, parameter tampering can occur if user-supplied data like product prices or quantities are trusted blindly. Attackers might manipulate these values to reduce prices or change order details.
+
+### Bad Practice: Trusting Client-Supplied Prices
+
+```javascript
+// Vulnerable to parameter tampering
+app.post("/process-payment", (req, res) => {
+  const { productId, userPrice } = req.body;
+  // Using userPrice for transaction
+});
+```
+
+### Good Practice: Server-Side Price Validation
+
+```javascript
+// Secure approach
+app.post("/process-payment", (req, res) => {
+  const { productId } = req.body;
+  const actualPrice = getProductPrice(productId); // Fetch the real price from the server
+  // Process payment with actualPrice, avoiding tampering
+});
+```
+
+In the secure approach, the server retrieves the actual price based on the product ID from a reliable source, like a database, ensuring the integrity of the transaction.
+
+## Conclusion
+
+Writing secure code involves being mindful of user input, safeguarding database queries, and preventing unauthorized actions. Adhering to secure coding practices significantly reduces vulnerability risks. For in-depth techniques, refer to resources like the OWASP Top Ten, and regularly update your security knowledge.
+
+## References
+
+- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)
+- [OWASP Secure Coding Practices](https://cheatsheetseries.owasp.org/index.html)

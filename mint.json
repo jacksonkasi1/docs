@@ -59,7 +59,8 @@
         "docs/code-documentation",
         "docs/typeScript-essentials",
         "docs/react-code-structure",
-        "docs/code-optimization"
+        "docs/code-optimization",
+        "docs/secure-coding"
       ]
     },
     {
