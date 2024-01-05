@@ -65,15 +65,17 @@
     },
     {
       "group": "Essential Resources 📖",
-      "pages": [
-        "resources/essential-resources",
-        "resources/must-have-tools"
-      ]
+      "pages": ["resources/essential-resources", "resources/must-have-tools"]
     }
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/jacksonkasi11",
     "github": "https://github.com/jacksonkasi1",
     "linkedin": "https://www.linkedin.com/in/jacksonkasi"
+  },
+  "analytics": {
+    "clearbit": {
+      "publicApiKey": "pk_67d3962d6ff22e060f66565c16985ee4"
+    }
   }
 }
