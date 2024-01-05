@@ -52,13 +52,13 @@
       "group": "Developer Best Practices ⚒️",
       "pages": [
         "docs/organizing-imports",
-        "docs/typography",
         "docs/colors",
-        "docs/code-splitting",
+        "docs/typography",
         "docs/programming-case-types",
-        "docs/code-documentation",
-        "docs/typeScript-essentials",
         "docs/react-code-structure",
+        "docs/code-documentation",
+        "docs/code-splitting",
+        "docs/typeScript-essentials",
         "docs/code-optimization",
         "docs/secure-coding"
       ]
