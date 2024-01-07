@@ -219,4 +219,40 @@ import { confirmOrderApi } from "@api/cart";
 
 </Accordion>
 
+## Import Aliases
+
+Import aliases simplify import statements, making them more readable and manageable, especially in large projects. Here's how to use them effectively in Node.js, React, and Next.js 14.
+
+### Good Practice: Using Import Aliases
+
+```javascript
+// In a React/Next.js project
+import Button from '@components/Button';
+
+// In a Node.js project
+const dbConfig = require('@config/db');
+```
+
+### Bad Practice: Without Import Aliases
+
+```javascript
+// Complex and lengthy relative paths
+import Button from '../../../components/Button';
+const dbConfig = require('../../config/db');
+```
+
+### Setting Up Aliases
+
+- **React/Next.js**: Configure `jsconfig.json` or `tsconfig.json` for alias paths.
+- **Node.js**: Use `module-alias` package or configure `package.json` for custom paths.
+
+Import aliases streamline project structure by reducing the complexity of import statements, enhancing code readability and maintainability.
+
+---
+
+**References:**
+- [Using Import Aliases in JavaScript](https://medium.com/dailyjs/using-import-aliases-in-javascript-a0b46237601c)
+- [module-alias Package](https://www.npmjs.com/package/module-alias)
+- [Configuring Path Aliases in Frontend Projects](https://betterprogramming.pub/the-native-way-to-configure-path-aliases-in-frontend-projects-5db70f19a6e0)
+
 By following this order, your imports will be neatly organized and easily understandable to anyone reading your code. This not only aids in development but also in maintaining the codebase efficiently.
