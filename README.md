@@ -1,4 +1,7 @@
 # Developer Best Practices Documentation
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Welcome to the Developer Best Practices Documentation - a comprehensive guide for coding enthusiasts and professionals alike.
 
@@ -33,7 +36,13 @@ For detailed contribution guidelines, visit [our contribution page](https://peac
 
 ## Contributors 🌟
 
-![GitHub contributors](https://img.shields.io/github/contributors/jacksonkasi1/docs?style=for-the-badge&color=%2300DA66)
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 
 
 Special thanks to everyone who has contributed to making this documentation better! Your knowledge and experiences have been invaluable.
