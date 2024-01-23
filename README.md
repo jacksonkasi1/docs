@@ -33,11 +33,14 @@ For detailed contribution guidelines, visit [our contribution page](https://peac
 
 ## Contributors 🌟
 
+![GitHub contributors](https://img.shields.io/github/contributors/jacksonkasi1/docs?style=for-the-badge&color=%2300DA66)
+
+
 Special thanks to everyone who has contributed to making this documentation better! Your knowledge and experiences have been invaluable.
 
-<div style="display: flex; flex-wrap: wrap;">
-<img src="https://avatars.githubusercontent.com/u/68270206?v=4" alt="Jackson Kasi" width="100" style="border-radius: 50%; margin: 5px;">
 
+<div style="display: flex; flex-wrap: wrap;">
+<img src="https://avatars.githubusercontent.com/u/68270206?v=4" alt="Jackson Kasi" width="100" style="border-radius: 50%; margin: 5px;" />
 </div>
 
 ## License
