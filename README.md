@@ -1,32 +1,51 @@
-# Mintlify Starter Kit
+# Developer Best Practices Documentation
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Welcome to the Developer Best Practices Documentation - a comprehensive guide for coding enthusiasts and professionals alike.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## Introduction
 
-### Development
+This documentation covers a wide range of topics from code optimization, secure coding practices, best practices in various programming languages, to the latest trends in software development.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+## Documentation Pages
 
-```
-npm i -g mintlify
-```
+- Organizing Imports
+- Managing Colors
+- Centralized Typography
+- Naming Conventions
+- React Code Structure
+- Code Documentation
+- TypeScript Essentials
+- Code Optimization
+- Secure Coding
+- [More...](https://peacockindia.mintlify.app)
 
-Run the following command at the root of your documentation (where mint.json is)
+## Contributing
 
-```
-mintlify dev
-```
+We welcome contributions from the community! Whether it's fixing a bug, improving the documentation, or sharing a new topic, your input is valuable.
 
-### Publishing Changes
+To contribute:
+1. Fork the repository.
+2. Make your changes.
+3. Submit a pull request.
 
-Install our Github App to autopropagate changes from youre repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+For detailed contribution guidelines, visit [our contribution page](https://peacockindia.mintlify.app/development#your-contributions-are-valuable).
 
-#### Troubleshooting
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+## Contributors 🌟
+
+Special thanks to everyone who has contributed to making this documentation better! Your knowledge and experiences have been invaluable.
+
+<div style="display: flex; flex-wrap: wrap;">
+<img src="https://avatars.githubusercontent.com/u/68270206?v=4" alt="Jackson Kasi" width="100" style="border-radius: 50%; margin: 5px;">
+
+</div>
+
+## License
+
+This guide is open-source and is available under the [MIT License](LICENSE).
+
+---
+
+Maintained with 💙 by [Jackson kasi](https://github.com/jacksonkasi1)
+
+Happy Coding! 🚀
