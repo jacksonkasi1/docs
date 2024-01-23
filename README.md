@@ -36,17 +36,14 @@ For detailed contribution guidelines, visit [our contribution page](https://peac
 
 ## Contributors 🌟
 
+Special thanks to everyone who has contributed to making this documentation better! Your knowledge and experiences have been invaluable.
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-
-
-Special thanks to everyone who has contributed to making this documentation better! Your knowledge and experiences have been invaluable.
-
 
 <div style="display: flex; flex-wrap: wrap;">
 <img src="https://avatars.githubusercontent.com/u/68270206?v=4" alt="Jackson Kasi" width="100" style="border-radius: 50%; margin: 5px;" />
