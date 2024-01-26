@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mintlify dev"
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.26.1"
+    "all-contributors-cli": "^6.26.1",
+    "mintlify": "^4.0.114"
   },
   "keywords": [],
   "author": "jacksonkasi1",
