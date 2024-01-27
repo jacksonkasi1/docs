@@ -6,6 +6,7 @@
 Welcome to the Developer Best Practices Documentation - a comprehensive guide for coding enthusiasts and professionals alike.
 
 ## Introduction
+<a href="https://peacockindia.mintlify.app/introduction" target="_blank">
 <picture>
   <!-- Dark mode image -->
   <source media="(prefers-color-scheme: dark)" srcset="./images/hero-dark.svg">
@@ -16,6 +17,7 @@ Welcome to the Developer Best Practices Documentation - a comprehensive guide fo
   <!-- Default image if no preference is detected -->
   <img alt="Developer Best Practices Documentation" src="./images/hero-dark.svg">
 </picture>
+</a>
 
 
 This documentation covers a wide range of topics from code optimization, secure coding practices, best practices in various programming languages, to the latest trends in software development.
