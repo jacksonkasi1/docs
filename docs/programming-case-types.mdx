@@ -76,7 +76,6 @@ function getUserProfile() { /* ... */ }   // Not clear it's a hook
 function loginAPI() { /* ... */ }         // Should start with 'use' and describe action
 ```
 
-
 ### Function Naming
 
 Function names should clearly indicate their purpose and action.
@@ -99,22 +98,42 @@ function submitData() { /* ... */ }         // Verb should come first
 
 Used for class names, constructor functions, and React component names.
 
-### File Naming
+### Type Naming:  `UserProfile`
 
-File names for classes and React components should use PascalCase.
-
-**Good Practice**:
-
-```plaintext
-UserProfile.js
-InvoiceList.jsx
+**Good Example:**
+```typescript
+type UserProfile = {
+  id: number;
+  name: string;
+  email: string;
+};
 ```
 
-**Bad Practice**:
+**Bad Example:**
+```typescript
+type user_info = {
+  userid: number;
+  username: string;
+  useremail: string;
+};
+```
 
-```js
-userProfile.js          // Should use PascalCase
-invoice_list.jsx        // Should not mix cases
+### Interface Naming: `UserSettings`
+
+**Good Example:**
+```typescript
+interface UserSettings {
+  theme: string;
+  notifications: boolean;
+}
+```
+
+**Bad Example:**
+```typescript
+interface settings {
+  Theme: string;
+  NotificationsEnabled: boolean;
+}
 ```
 
 ## snake_case
@@ -286,6 +305,69 @@ utilitiesFolder/     // Should use dashes, not camelCase
 Auth_Pages/          // Avoid mixing case styles and underscores
 UserProfilePage/     // Redundant 'Page' suffix and incorrect case style
 ```
+
+### File Naming Conventions
+
+File naming conventions organize and simplify your code, making it easier for teams to navigate. This guide emphasizes best practices for naming React components and files such as hooks and utils. It also warns against common mistakes to keep your project clear and consistent.
+
+**Component Files (JSX/TSX)**
+
+| Good Practice ✅
+
+React component files should be named using **PascalCase**.
+
+```plaintext
+UserProfile.jsx
+InvoiceList.tsx
+```
+
+| Bad Practice ❌
+
+Avoid using `snake_case`, `kebab-case`, or inconsistent capitalization in component filenames.
+
+```plaintext
+user_profile.jsx     // snake_case
+invoice-list.tsx     // kebab-case
+userprofile.js       // all lowercase
+```
+
+**Hooks/Utils/Other JS or TS Files**
+
+For non-component files, you have the option between `kebab-case` and `camelCase`. The key is to maintain consistency throughout the project. Choose one style and stick with it.
+
+| Good Practice ✅
+
+- Using Kebab-Case
+```plaintext
+use-user-data.js
+format-date.ts
+user-types.ts
+```
+
+- Using CamelCase
+```plaintext
+useUserData.js
+formatDate.ts
+userTypes.ts
+```
+
+| Bad Practice ❌
+
+Mixing naming conventions within the same project or using unconventional casing can lead to a cluttered and confusing codebase.
+
+```plaintext
+useUserData.js       // CamelCase mixed with...
+format-date.ts       // kebab-case in the same project
+
+UseUserData.js       // PascalCase for non-component files
+formatDate.TS        // Inconsistent file extension casing
+```
+
+#### Recommendation 📌
+
+Decide whether to use `kebab-case` or `camelCase` for naming hooks, utilities, types, and other similar files in your project. **Do not mix** these conventions within the same codebase.
+
+The choice may depend on team preferences, the specific needs of the project, or existing conventions in related projects. Remember, consistency is paramount.
 
 ---
 
